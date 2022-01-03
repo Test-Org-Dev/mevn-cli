@@ -24,6 +24,6 @@ app.use('/api', require('./routes/api'));
 
 // Listening to port
 app.listen(port);
-console.log(`Listening On http://localhost:${port}/api`);
+
 
 module.exports = app;
