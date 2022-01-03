@@ -11,7 +11,7 @@ gulp.task('build', async () => {
     'babel src --out-dir lib --copy-files --include-dotfiles',
     { stdio: 'inherit' },
   );
-  console.log(`The process exited with code ${exitCode}`);
+  
 });
 
 gulp.task('cleanup', () => del('lib/**/__tests__'));
