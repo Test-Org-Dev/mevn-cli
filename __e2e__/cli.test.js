@@ -4,7 +4,20 @@ import { run } from '../jest/helpers';
 
 // Test JS Analyzer
 
-var a
+function preferTernary(test) {
+      if (test) {
+        return 'a';
+      } else {
+        return 'b';
+      }
+    }
+
+    let num = 13;;
+    if (num == 0) {
+      //
+    } else {
+      console.log(num);
+    }
 
 describe('Default behavior', () => {
   it('warns the user if an unknown option is passed in', () => {
