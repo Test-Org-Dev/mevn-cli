@@ -2,6 +2,10 @@
 
 import { run } from '../jest/helpers';
 
+// Test JS Analyzer
+
+let a
+
 describe('Default behavior', () => {
   it('warns the user if an unknown option is passed in', () => {
     const { exitCode, stderr } = run(['--invalid'], { reject: false });
