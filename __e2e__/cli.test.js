@@ -2,22 +2,11 @@
 
 import { run } from '../jest/helpers';
 
-// Test JS Analyzer
+console.log('Test')
 
-function preferTernary(test) {
-      if (test) {
-        return 'a';
-      } else {
-        return 'b';
-      }
-    }
+debugger;
 
-    let num = 13;;
-    if (num == 0) {
-      //
-    } else {
-      console.log(num);
-    }
+console.log('Test')
 
 describe('Default behavior', () => {
   it('warns the user if an unknown option is passed in', () => {
