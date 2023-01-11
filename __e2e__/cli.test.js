@@ -4,7 +4,7 @@ import { run } from '../jest/helpers';
 
 // Test JS Analyzer
 
-let a
+var a
 
 describe('Default behavior', () => {
   it('warns the user if an unknown option is passed in', () => {
