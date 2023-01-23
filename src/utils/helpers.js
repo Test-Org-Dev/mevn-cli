@@ -1,9 +1,9 @@
-import chalk from 'chalk';
-import fs from 'fs';
-import inquirer from 'inquirer';
-import path from 'path';
+import chalk from "chalk";
+import fs from "fs";
+import inquirer from "inquirer";
+import path from "path";
 
-import { isWin } from './constants';
+import { isWin } from "./constants";
 
 /**
  * Warns appropriately if the config file doesn't exist
@@ -12,11 +12,11 @@ import { isWin } from './constants';
  */
 
 export const checkIfConfigFileExists = () => {
-  if (!fs.existsSync('./.mevnrc')) {
+  if (!fs.existsSync("./.mevnrc")) {
     console.error(
       chalk.cyan.bold(`\n\n Make sure that you're within a valid MEVN project
-      \n${chalk.red.bold(' Error:')} No .mevnrc file found
-    `),
+      \n${chalk.red.bold(" Error:")} No .mevnrc file found
+    `)
     );
     process.exit(1);
   }
@@ -29,11 +29,11 @@ export const checkIfConfigFileExists = () => {
  */
 
 export const fetchProjectConfig = (genPath) => {
-  const configFilePath = genPath ? path.join(genPath, '.mevnrc') : '.mevnrc';
+  const configFilePath = genPath ? path.join(genPath, ".mevnrc") : ".mevnrc";
   if (!fs.existsSync(configFilePath)) {
     return;
   }
-  return JSON.parse(fs.readFileSync(configFilePath, 'utf8'));
+  return JSON.parse(fs.readFileSync(configFilePath, "utf8"));
 };
 
 /**
@@ -90,10 +90,10 @@ export const copyDirSync = (source, target) => {
 
 export const dirOfChoice = () => {
   return inquirer.prompt({
-    name: 'dir',
-    type: 'list',
-    message: 'Choose from below',
-    choices: ['client', 'server'],
+    name: "dir",
+    type: "list",
+    message: "Choose from below",
+    choices: ["client", "server"],
   });
 };
 
@@ -106,7 +106,7 @@ export const dirOfChoice = () => {
 
 const stripChar = (fileContent) =>
   fileContent.map((content) =>
-    content.includes('\r') ? content.substr(0, content.indexOf('\r')) : content,
+    content.includes("\r") ? content.substr(0, content.indexOf("\r")) : content
   );
 /**
  * Returns the file content as an arrray
@@ -119,7 +119,7 @@ export const readFileContent = (filePath) => {
   if (!filePath) {
     return;
   }
-  const fileContent = fs.readFileSync(filePath, 'utf8').split('\n');
+  const fileContent = fs.readFileSync(filePath, "utf8").split("\n");
 
   // Check if the host OS is windows
   if (isWin) {
