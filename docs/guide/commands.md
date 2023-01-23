@@ -1,10 +1,10 @@
 ---
-title: 'Available Commands'
+title: "Available Commands"
 ---
 
 # Available Commands
 
- `MEVN-CLI` offers the following set of commands:-
+`MEVN-CLI` offers the following set of commands:-
 
 - ### `mevn init <appname>`
 
@@ -54,7 +54,7 @@ Prints debugging information about the local environment, useful while submittin
 
 ## Versioning And Help
 
-| option | description
-| --- | --- |
-| -V, --version | Check CLI version |
-| --help, -h | Get help and check usage |
+| option        | description              |
+| ------------- | ------------------------ |
+| -V, --version | Check CLI version        |
+| --help, -h    | Get help and check usage |

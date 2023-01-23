@@ -1,6 +1,6 @@
-'user strict';
+"user strict";
 
-import ora from 'ora';
+import ora from "ora";
 
 class Spinner {
   constructor(text) {
