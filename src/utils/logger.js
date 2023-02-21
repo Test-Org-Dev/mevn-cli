@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import chalk from "chalk";
 
 export const error = (msg) => console.error(chalk.red.bold(msg));
 export const info = (msg) => console.info(chalk.cyan.bold(msg));

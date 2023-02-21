@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-import fs from 'fs';
-import showBanner from 'node-banner';
+import fs from "fs";
+import showBanner from "node-banner";
 
-import serveProject from './launch';
+import serveProject from "./launch";
 import {
   checkIfConfigFileExists,
   dirOfChoice,
   fetchProjectConfig,
-} from '../../utils/helpers';
+} from "../../utils/helpers";
 
 /**
  * Prompts the user to choose between client/server side to be served locally
@@ -17,14 +17,14 @@ import {
  */
 
 export default async () => {
-  await showBanner('MEVN CLI', 'Light speed setup for MEVN stack based apps.');
+  await showBanner("MEVN CLI", "Light speed setup for MEVN stack based apps.");
   checkIfConfigFileExists();
 
-  let templateDir = 'client';
+  let templateDir = "client";
 
   const projectConfig = fetchProjectConfig();
 
-  if (fs.existsSync('./server')) {
+  if (fs.existsSync("./server")) {
     ({ dir: templateDir } = await dirOfChoice());
   }
 
