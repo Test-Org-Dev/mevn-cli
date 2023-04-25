@@ -7,12 +7,12 @@ const {
   GraphQLSchema,
   GraphQLList,
   GraphQLNonNull,
-} = require('graphql');
+} = require("graphql");
 
-const UserSchema = require('../models/user_schema');
+const UserSchema = require("../models/user_schema");
 
 const UserType = new GraphQLObjectType({
-  name: 'User',
+  name: "User",
   fields: () => ({
     _id: { type: GraphQLID },
     name: { type: GraphQLString },
@@ -21,7 +21,7 @@ const UserType = new GraphQLObjectType({
 });
 
 const UserInputType = new GraphQLInputObjectType({
-  name: 'UserInput',
+  name: "UserInput",
   fields: () => ({
     name: { type: GraphQLString },
     age: { type: GraphQLInt },
@@ -30,7 +30,7 @@ const UserInputType = new GraphQLInputObjectType({
 
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
-    name: 'RootQueryType',
+    name: "RootQueryType",
     fields: {
       users: {
         type: new GraphQLList(UserType),
@@ -52,7 +52,7 @@ const schema = new GraphQLSchema({
     },
   }),
   mutation: new GraphQLObjectType({
-    name: 'RootMutationType',
+    name: "RootMutationType",
     fields: {
       addUser: {
         type: UserType,

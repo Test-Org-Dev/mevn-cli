@@ -1,7 +1,7 @@
 module.exports = {
-  extends: ['eslint:recommended', 'prettier', 'plugin:prettier/recommended'],
-  plugins: ['prettier'], // activating esling-plugin-prettier (--fix stuff)
-  parser: '@babel/eslint-parser',
+  extends: ["eslint:recommended", "prettier", "plugin:prettier/recommended"],
+  plugins: ["prettier"], // activating esling-plugin-prettier (--fix stuff)
+  parser: "@babel/eslint-parser",
   env: {
     browser: true,
     es6: true,
@@ -9,23 +9,23 @@ module.exports = {
     jest: true,
   },
   parserOptions: {
-    sourceType: 'module',
+    sourceType: "module",
     allowImportExportEverywhere: false,
     ecmaFeatures: {
       globalReturn: false,
     },
   },
   rules: {
-    'no-console': 0,
-    'prettier/prettier': [
+    "no-console": 0,
+    "prettier/prettier": [
       // customizing prettier rules (unfortunately not many of them are customizable)
-      'error',
+      "error",
       {
-        endOfLine: 'auto',
+        endOfLine: "auto",
         singleQuote: true,
-        trailingComma: 'all',
+        trailingComma: "all",
       },
     ],
-    eqeqeq: ['error', 'always'], // adding some custom ESLint rules
+    eqeqeq: ["error", "always"], // adding some custom ESLint rules
   },
 };

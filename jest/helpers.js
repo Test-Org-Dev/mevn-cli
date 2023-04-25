@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-import '@babel/polyfill';
-import runTest from 'cli-prompts-test';
-import execa from 'execa';
-import fs from 'fs';
-import path from 'path';
+import "@babel/polyfill";
+import runTest from "cli-prompts-test";
+import execa from "execa";
+import fs from "fs";
+import path from "path";
 
-const CLI_PATH = path.resolve('bin', 'mevn.js');
+const CLI_PATH = path.resolve("bin", "mevn.js");
 
-const env = { FORCE_COLOR: '0' }; // Disables chalk's colors for testing
+const env = { FORCE_COLOR: "0" }; // Disables chalk's colors for testing
 
 // sync version
 export const run = (args, options = {}) =>
