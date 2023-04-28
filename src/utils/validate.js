@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-import chalk from 'chalk';
-import execa from 'execa';
-import inquirer from 'inquirer';
+import chalk from "chalk";
+import execa from "execa";
+import inquirer from "inquirer";
 
-import exec from './exec';
-import { isWin, isLinux } from './constants';
-import Spinner from './spinner';
+import exec from "./exec";
+import { isWin, isLinux } from "./constants";
+import Spinner from "./spinner";
 
 // Initialize the spinner.
 const spinner = new Spinner();
@@ -50,12 +50,12 @@ const checkInstallationStatus = async (dependency) => {
  */
 
 const installGit = () => {
-  const url = 'https://git-scm.com/download/win';
+  const url = "https://git-scm.com/download/win";
 
   if (isWin) {
-    return showInstallationInfo('git', url);
+    return showInstallationInfo("git", url);
   }
-  const packageMgr = isLinux ? 'apt' : 'brew';
+  const packageMgr = isLinux ? "apt" : "brew";
   return exec(`${packageMgr} install git`);
 };
 
@@ -68,14 +68,14 @@ const installGit = () => {
 const installDocker = () => {
   const urlMap = {
     win32:
-      'https://hub.docker.com/editions/community/docker-ce-desktop-windows',
-    darwin: 'https://docs.docker.com/docker-for-mac/install/',
+      "https://hub.docker.com/editions/community/docker-ce-desktop-windows",
+    darwin: "https://docs.docker.com/docker-for-mac/install/",
   };
 
   if (!isLinux) {
-    return showInstallationInfo('docker', urlMap[process.platform]);
+    return showInstallationInfo("docker", urlMap[process.platform]);
   }
-  return exec('apt install docker.io');
+  return exec("apt install docker.io");
 };
 
 // Exported methods
@@ -104,16 +104,16 @@ export const validateInput = (userInput) => {
 export const validateInstallation = async (dependency) => {
   const isDepInstalled = await checkInstallationStatus(dependency);
 
-  if (dependency.includes(' ')) {
-    const sep = dependency.includes('-') ? '-' : '';
+  if (dependency.includes(" ")) {
+    const sep = dependency.includes("-") ? "-" : "";
     dependency = dependency.split(sep)[0];
   }
 
   if (!isDepInstalled) {
     const { shouldInstallDep } = await inquirer.prompt([
       {
-        type: 'confirm',
-        name: 'shouldInstallDep',
+        type: "confirm",
+        name: "shouldInstallDep",
         message: `Sorry, ${dependency} is not installed on your system, Do you want to install it?`,
       },
     ]);
@@ -121,9 +121,9 @@ export const validateInstallation = async (dependency) => {
     if (!shouldInstallDep) {
       console.warn(
         chalk.yellow.bold(` Warning:- ${chalk.cyan.bold(
-          `${dependency} is required to be installed`,
+          `${dependency} is required to be installed`
         )}
-        `),
+        `)
       );
       process.exit(1);
     }
@@ -131,10 +131,10 @@ export const validateInstallation = async (dependency) => {
     spinner.text = `Installing ${dependency}`;
     spinner.start();
 
-    if (dependency === 'git') {
+    if (dependency === "git") {
       return installGit();
     }
-    if (dependency === 'docker') {
+    if (dependency === "docker") {
       return installDocker();
     }
     await exec(`npm install -g ${dependency}`);
