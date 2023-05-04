@@ -231,7 +231,7 @@ typeof c == 'undefined'
 'hello' != 'world'
 0 == 0
 true == true
-c == null
+c === null
 
 // 5. Avoid using multiline stringsJS-C1000
 const x = "Line 1 \
