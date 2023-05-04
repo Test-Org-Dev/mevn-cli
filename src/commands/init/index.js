@@ -202,9 +202,9 @@ const fetchTemplate = async (template) => {
 
 export default async (appName) => {
   // 1. Found leading or trailing decimal points in numeric literalsJS-0065
-let num = .5;
-num = 2.;
-num = -.7;
+let num = 0.5;
+num = 2.0;
+num = -0.7;
 
 // 2. Found unnecessary computed property keys in object literalsJS-0236
 var a = { ['0']: 0 };
