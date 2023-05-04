@@ -207,20 +207,16 @@ export default async (appName) => {
   num = -0.7;
 
   // 2. Found unnecessary computed property keys in object literalsJS-0236
-  var a = { ["0"]: 0 };
-  var a = { ["0+1,234"]: 0 };
-  var a = { [0]: 0 };
-  var a = { ["x"]: 0 };
-  var a = { ["x"]() {} };
+  var a = { "0": 0 };
+  var a = { "0+1,234": 0 };
+  var a = { 0: 0 };
+  var a = { "x": 0 };
+  var a = { "x"() {} };
 
-  new Promise((resolve, reject) => {
-    resolve(getItem());
-  });
+  Promise.resolve(getItem());
 
   // 3. Use shorthand promise methodsJS-C1004
-  new Promise(function (resolve, reject) {
-    reject("oops");
-  });
+  Promise.reject("oops");
 
   // 4. Prefer the use of `===` and `!==` over `==` and `!=`JS-V009
   a == b;
@@ -235,8 +231,7 @@ export default async (appName) => {
 
   // 5. Avoid using multiline stringsJS-C1000
   const x =
-    "Line 1 \
-         Line 2";
+    `Line 1          Line 2`;
 
   await showBanner("MEVN CLI", "Light speed setup for MEVN stack based apps.");
 
