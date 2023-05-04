@@ -26,7 +26,7 @@ export default async () => {
   // Exit for the case of Nuxt.js boilerplate template
   const { template } = fetchProjectConfig();
   if (template === "Nuxt.js") {
-    logger.error(`\n You're having the Nuxt.js boilerplate template`);
+    logger.error("\n You're having the Nuxt.js boilerplate template");
     process.exit(1);
   }
 

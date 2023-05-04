@@ -144,7 +144,7 @@ export default async (deps, { dev }) => {
     if (modules.length) {
       await exec(
         `npm install --save ${modulesWithPrefix.join(" ")}`,
-        `Installing Nuxt.js modules`,
+        "Installing Nuxt.js modules",
         "Successfully installed the opted Nuxt.js modules",
         {
           cwd: templateDir,
@@ -167,7 +167,7 @@ export default async (deps, { dev }) => {
       // Install buildModules as a devDep
       await exec(
         `npm install --save-dev ${buildModulesWithPrefix.join(" ")}`,
-        `Installing Nuxt.js buildModules`,
+        "Installing Nuxt.js buildModules",
         "Successfully installed the opted Nuxt.js buildModules",
         {
           cwd: templateDir,
@@ -507,12 +507,12 @@ export default async (deps, { dev }) => {
     if (deps.includes("vuex")) {
       // Content to be inserted
       const vuexStoreTemplate = [
-        `import Vue from "vue";`,
-        `import Vuex from "vuex";`,
+        'import Vue from "vue";',
+        'import Vuex from "vuex";',
         "",
-        `Vue.use(Vuex);`,
+        "Vue.use(Vuex);",
         "",
-        `export default new Vuex.Store({`,
+        "export default new Vuex.Store({",
         `${" ".repeat(2)}state: {},`,
         "",
         `${" ".repeat(2)}getters: {},`,
@@ -520,7 +520,7 @@ export default async (deps, { dev }) => {
         `${" ".repeat(2)}mutations: {},`,
         "",
         `${" ".repeat(2)}actions: {}`,
-        `});`,
+        "});",
         "",
       ];
       // Creates a new store.js file within the client/src directory.
@@ -531,7 +531,7 @@ export default async (deps, { dev }) => {
       const blankLineIndex = config.indexOf(config.find((line) => line === ""));
 
       // Inserting the import statement for vuex-store
-      config.splice(blankLineIndex, 0, `import store from "./store";`);
+      config.splice(blankLineIndex, 0, 'import store from "./store";');
 
       // Fetching the position where in which router is passed on to the Vue instance
       const routerIndex = config.indexOf(
@@ -539,7 +539,7 @@ export default async (deps, { dev }) => {
       );
 
       // Insert store just after router so that it gets passed on to the Vue instance
-      config.splice(routerIndex + 1, 0, `  store,`);
+      config.splice(routerIndex + 1, 0, "  store,");
 
       // Cleaning up
       if (deps.includes("vuetify")) config.splice(blankLineIndex + 1, 1);
@@ -552,8 +552,8 @@ export default async (deps, { dev }) => {
     if (deps.includes("vuetify")) {
       // Import Vuetify and minified css towards the top of the config file
       [
-        `import Vuetify from "vuetify";`,
-        `import "vuetify/dist/vuetify.min.css";`,
+        'import Vuetify from "vuetify";',
+        'import "vuetify/dist/vuetify.min.css";',
       ].forEach((item, i) => config.splice(i + 1, 0, item));
 
       // Fetch the index after which the respective config should come up

@@ -88,7 +88,7 @@ describe("mevn init", () => {
       reject: false,
     });
     expect(exitCode).toBe(1);
-    expect(stderr).toContain(`It seems the current directory isn't empty.`);
+    expect(stderr).toContain("It seems the current directory isn't empty.");
 
     // Delete the generated directory
     rmTempDir(genPath);
