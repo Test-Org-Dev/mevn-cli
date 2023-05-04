@@ -39,30 +39,30 @@ A CLI tool for getting started with the MEVN stack. The acronym “MEVN” stand
 
 ## Quickstart
 
-``` bash
+```bash
 npm install -g mevn-cli
 mevn init <appname>
 ```
 
 ### Available Commands
 
- `MEVN-CLI` offers the following set of commands:-
+`MEVN-CLI` offers the following set of commands:-
 
-| command | description |                                                                                                
-| -------------- |  ---------------- |
-| mevn init &lt;appname&gt; | Scaffolds a MEVN stack project in the current path |
-| mevn serve | Serves the client/server side template locally |
-| mevn add [deps] [--dev] | Adds additional dependencies as required on the go |
-| mevn generate | Generates component files for the client and CRUD boilerplate template for the server based on MVC architecture |
-| mevn codesplit | Lazy load components as required |
-| mevn dockerize | Serves the webapp as multi-container Docker applications |
-| mevn deploy | Deploys the webapp to a cloud service of choice |
-| mevn info | Prints debugging information about the local environment |
+| command                   | description                                                                                                     |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| mevn init &lt;appname&gt; | Scaffolds a MEVN stack project in the current path                                                              |
+| mevn serve                | Serves the client/server side template locally                                                                  |
+| mevn add [deps] [--dev]   | Adds additional dependencies as required on the go                                                              |
+| mevn generate             | Generates component files for the client and CRUD boilerplate template for the server based on MVC architecture |
+| mevn codesplit            | Lazy load components as required                                                                                |
+| mevn dockerize            | Serves the webapp as multi-container Docker applications                                                        |
+| mevn deploy               | Deploys the webapp to a cloud service of choice                                                                 |
+| mevn info                 | Prints debugging information about the local environment                                                        |
 
 ## Features
 
 - It allows Developers to build webapps with ease in which all the local environment setup is being taken care of. All they have to do is to focus on writing actual code.
-- The whole project is done in modules(thanks to ES6 syntax) which enhances user readability and leads to compact code.  
+- The whole project is done in modules(thanks to ES6 syntax) which enhances user readability and leads to compact code.
 - MEVN-CLI simplifies developer workflow by generating the required boilerplate and automating redundant tasks.
 
 ## Contributing
@@ -70,6 +70,7 @@ mevn init <appname>
 Before contributing a change to this repository, please first discuss the change you wish to make via issue, or any other method with the owners of this repository . Take a look at the [Contributing Guidelines](https://github.com/madlabsinc/mevn-cli/wiki/Contributing-Guidelines) to get a better picture regarding the codebase and project structure.
 
 ### How do I contribute?
+
 1. Ensure you have no "dummy" files left, if you do then add them to the bottom of `.gitignore`.
 2. Fork and clone our repository.
 3. Make your life-changing changes.
@@ -82,11 +83,14 @@ Before contributing a change to this repository, please first discuss the change
 > `npm link` creates a symlink in the global folder making the `mevn` command globally available within your local development environment
 
 ### Why should I contribute?
+
 Contributing helps people and simply makes the world a better place, Without contributors this project would cease to exist.
 
 ### How should I write a commit message?
+
 This project uses [Commitlint](https://github.com/conventional-changelog/commitlint/#what-is-commitlint) to check if the commit messages meet the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/).
 The full pattern is:
+
 ```sh
 type(scope?): subject #scope is optional
 
@@ -96,6 +100,7 @@ footer? #footer is optional
 ```
 
 Following that pattern, your commit messages should look like these:
+
 ```sh
 feat: activate open collective
 ```
@@ -114,18 +119,19 @@ This closes #123
 ```
 
 ### What if I cannot code or do not like it?
+
 You can always write documentation, most repositories lack in it.
 
 ### What is next?
-Nothing! You're done and ready to get coding!
 
+Nothing! You're done and ready to get coding!
 
 ## Versioning And Help
 
-| option | description
-| --- | --- |
-| -V, --version | Check CLI version |
-| -h, --help | Get help and check usage |
+| option        | description              |
+| ------------- | ------------------------ |
+| -V, --version | Check CLI version        |
+| -h, --help    | Get help and check usage |
 
 ## Contributors
 
