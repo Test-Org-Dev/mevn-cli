@@ -23,7 +23,7 @@ let projectConfig = {};
 
 const makeInitialCommit = () => {
   // Commands to be executed serially
-  const commands = ["init", "add .", `commit -m "Init" -m "MEVN-CLI"`];
+  const commands = ["init", "add .", 'commit -m "Init" -m "MEVN-CLI"'];
 
   // Execute commands serially
   commands.forEach((cmd) =>
@@ -49,7 +49,7 @@ const showInstructions = () => {
 
   console.log();
   console.log();
-  logger.info(`You're all set`);
+  logger.info("You're all set");
   logger.info(`Now, just type in ${userCommandInstruction}`);
 
   makeInitialCommit();
@@ -213,25 +213,21 @@ export default async (appName) => {
   var a = { ["x"]: 0 };
   var a = { ["x"]() {} };
 
-  new Promise((resolve, reject) => {
-    resolve(getItem());
-  });
+  Promise.resolve(getItem());
 
   // 3. Use shorthand promise methodsJS-C1004
-  new Promise(function (resolve, reject) {
-    reject("oops");
-  });
+  Promise.reject("oops");
 
   // 4. Prefer the use of `===` and `!==` over `==` and `!=`JS-V009
-  a == b;
-  c == true;
-  bananas != 1;
-  value == undefined;
-  typeof c == "undefined";
-  "hello" != "world";
-  0 == 0;
-  true == true;
-  c == null;
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   // 5. Avoid using multiline stringsJS-C1000
   const x =
@@ -269,7 +265,7 @@ export default async (appName) => {
 
   if (isCurrentDir) {
     if (fs.readdirSync(".").length) {
-      logger.error(`\n It seems the current directory isn't empty.\n`);
+      logger.error("\n It seems the current directory isn't empty.\n");
       process.exit(1);
     }
   }
@@ -283,7 +279,7 @@ export default async (appName) => {
 
   if (fs.existsSync(".mevnrc")) {
     logger.error(
-      `\n It seems that you're already within a valid MEVN stack based project`
+      "\n It seems that you're already within a valid MEVN stack based project"
     );
     process.exit(1);
   }

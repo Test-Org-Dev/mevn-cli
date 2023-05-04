@@ -55,7 +55,7 @@ describe("mevn codesplit", () => {
     expect(
       routerConfig.some(
         (config) =>
-          config.trim() === `component: () => import("./views/Dashboard.vue")`
+          config.trim() === 'component: () => import("./views/Dashboard.vue")'
       )
     ).toBeTruthy();
 
@@ -82,6 +82,6 @@ describe("mevn codesplit", () => {
     });
 
     expect(exitCode).toBe(1);
-    expect(stderr).toContain(`You're having the Nuxt.js boilerplate template`);
+    expect(stderr).toContain("You're having the Nuxt.js boilerplate template");
   });
 });
