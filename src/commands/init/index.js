@@ -219,19 +219,9 @@ export default async (appName) => {
   Promise.reject("oops");
 
   // 4. Prefer the use of `===` and `!==` over `==` and `!=`JS-V009
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
   // 5. Avoid using multiline stringsJS-C1000
-  const x =
-    "Line 1          Line 2";
+  const x = "Line 1          Line 2";
 
   await showBanner("MEVN CLI", "Light speed setup for MEVN stack based apps.");
 
