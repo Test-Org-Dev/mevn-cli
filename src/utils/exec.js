@@ -1,5 +1,5 @@
-import execa from 'execa';
-import Spinner from './spinner';
+import execa from "execa";
+import Spinner from "./spinner";
 
 /**
  * Execute shell commands
@@ -11,14 +11,14 @@ import Spinner from './spinner';
  * @returns {Promise<void>}
  */
 
-export default async (cmd, progressMsg, successMsg = 'Done', options = {}) => {
+export default async (cmd, progressMsg, successMsg = "Done", options = {}) => {
   const spinner = new Spinner(progressMsg);
   spinner.start();
   try {
     await execa.command(cmd, options);
     spinner.succeed(successMsg);
   } catch (err) {
-    spinner.fail('Something went wrong');
+    spinner.fail("Something went wrong");
     throw err;
   }
 };
