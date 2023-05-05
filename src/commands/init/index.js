@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-import chalk from 'chalk';
-import execa from 'execa';
-import fs from 'fs';
-import path from 'path';
-import inquirer from 'inquirer';
-import showBanner from 'node-banner';
-import validate from 'validate-npm-package-name';
+import chalk from "chalk";
+import execa from "execa";
+import fs from "fs";
+import path from "path";
+import inquirer from "inquirer";
+import showBanner from "node-banner";
+import validate from "validate-npm-package-name";
 
-import * as logger from '../../utils/logger';
-import { copyDirSync, readFileContent } from '../../utils/helpers';
-import { validateInstallation } from '../../utils/validate';
+import * as logger from "../../utils/logger";
+import { copyDirSync, readFileContent } from "../../utils/helpers";
+import { validateInstallation } from "../../utils/validate";
 
 let projectPathRelative;
 let projectConfig = {};
@@ -23,11 +23,11 @@ let projectConfig = {};
 
 const makeInitialCommit = () => {
   // Commands to be executed serially
-  const commands = ['init', 'add .', `commit -m "Init" -m "MEVN-CLI"`];
+  const commands = ["init", "add .", `commit -m "Init" -m "MEVN-CLI"`];
 
   // Execute commands serially
   commands.forEach((cmd) =>
-    execa.sync('git', cmd.split(' '), { cwd: projectPathRelative }),
+    execa.sync("git", cmd.split(" "), { cwd: projectPathRelative })
   );
 };
 
@@ -38,12 +38,12 @@ const makeInitialCommit = () => {
  */
 
 const showInstructions = () => {
-  const isCurrentDir = projectPathRelative === '.';
-  let userCommandInstruction = chalk.green.bold('mevn serve');
+  const isCurrentDir = projectPathRelative === ".";
+  let userCommandInstruction = chalk.green.bold("mevn serve");
 
   if (!isCurrentDir) {
     userCommandInstruction = `${chalk.green.bold(
-      `cd ${projectPathRelative}`,
+      `cd ${projectPathRelative}`
     )} && ${userCommandInstruction}`;
   }
 
@@ -63,7 +63,7 @@ const showInstructions = () => {
  */
 
 const fetchTemplate = async (template) => {
-  await validateInstallation('git help -g');
+  await validateInstallation("git help -g");
 
   // Holds reference to the destination path
   const dest = path.resolve(projectPathRelative);
@@ -71,10 +71,10 @@ const fetchTemplate = async (template) => {
   // Holds reference to the path where starter templates reside
   const templatePath = path.join(
     __dirname,
-    '..',
-    '..',
-    'templates',
-    'starter-templates',
+    "..",
+    "..",
+    "templates",
+    "starter-templates"
   );
 
   // Copy the starter template to user's current working directory
@@ -82,68 +82,68 @@ const fetchTemplate = async (template) => {
 
   // Rename the resultant directory to client
   const renameFromPath = path.join(dest, template);
-  const renameToPath = path.join(dest, 'client');
+  const renameToPath = path.join(dest, "client");
   fs.renameSync(renameFromPath, renameToPath);
 
   // Rename to .gitignore
   fs.renameSync(
-    path.join(renameToPath, '.mevngitignore'),
-    path.join(renameToPath, '.gitignore'),
+    path.join(renameToPath, ".mevngitignore"),
+    path.join(renameToPath, ".gitignore")
   );
 
   // Prompt the user whether he/she requires pwa support
-  if (template === 'Nuxt.js') {
+  if (template === "Nuxt.js") {
     const configFilePath = path.join(
       projectPathRelative,
-      'client',
-      'nuxt.config.js',
+      "client",
+      "nuxt.config.js"
     );
     const configFile = readFileContent(configFilePath);
 
     // Choose the rendering mode
     const { mode } = await inquirer.prompt([
       {
-        name: 'mode',
-        type: 'list',
-        message: 'Rendering mode',
-        choices: ['Universal (SSR/SSG)', 'Single Page App'],
+        name: "mode",
+        type: "list",
+        message: "Rendering mode",
+        choices: ["Universal (SSR/SSG)", "Single Page App"],
       },
     ]);
 
     // Update the config file (nuxt.config.js)
-    if (mode === 'Single Page App') {
-      const modeIdx = configFile.findIndex((line) => line.includes('ssr:'));
-      configFile[modeIdx] = `${' '.repeat(2)}ssr: false,`;
+    if (mode === "Single Page App") {
+      const modeIdx = configFile.findIndex((line) => line.includes("ssr:"));
+      configFile[modeIdx] = `${" ".repeat(2)}ssr: false,`;
     }
 
     // Choose the Deployment target
     const { deployTarget } = await inquirer.prompt([
       {
-        name: 'deployTarget',
-        type: 'list',
-        message: 'Deployment target',
-        choices: ['Node.js hosting', 'Static (Static/JAMStack hosting)'],
+        name: "deployTarget",
+        type: "list",
+        message: "Deployment target",
+        choices: ["Node.js hosting", "Static (Static/JAMStack hosting)"],
       },
     ]);
 
-    if (deployTarget === 'Node.js hosting') {
+    if (deployTarget === "Node.js hosting") {
       const targetIdx = configFile.findIndex((line) =>
-        line.includes('target:'),
+        line.includes("target:")
       );
-      configFile[targetIdx] = `${' '.repeat(2)}target: 'server',`;
+      configFile[targetIdx] = `${" ".repeat(2)}target: 'server',`;
     }
 
     // To be written to project specific config (.mevnrc)
     projectConfig.modules = [];
-    projectConfig.renderingMode = mode.includes('Universal')
-      ? 'universal'
-      : 'spa';
-    projectConfig.deployTarget = deployTarget.includes('Node.js')
-      ? 'server'
-      : 'static';
+    projectConfig.renderingMode = mode.includes("Universal")
+      ? "universal"
+      : "spa";
+    projectConfig.deployTarget = deployTarget.includes("Node.js")
+      ? "server"
+      : "static";
 
     // Write back the updated config file (nuxt.config.js)
-    fs.writeFileSync(configFilePath, configFile.join('\n'));
+    fs.writeFileSync(configFilePath, configFile.join("\n"));
   }
 
   // Keep track whether dependencies are to be installed
@@ -153,17 +153,17 @@ const fetchTemplate = async (template) => {
 
   // Show up a suitable prompt whether if the user requires a Full stack application (Express.js)
   const { requireServer } = await inquirer.prompt({
-    name: 'requireServer',
-    type: 'confirm',
-    message: 'Do you require server side template (Express.js)',
+    name: "requireServer",
+    type: "confirm",
+    message: "Do you require server side template (Express.js)",
   });
 
   // Copy server side template files to the destination as required
   if (requireServer) {
     // Configure path
-    const serverDir = template === 'GraphQL' ? 'GraphQL' : 'Default';
-    const serverPath = ['templates', 'server', serverDir];
-    const source = path.join(__dirname, '..', '..', ...serverPath);
+    const serverDir = template === "GraphQL" ? "GraphQL" : "Default";
+    const serverPath = ["templates", "server", serverDir];
+    const source = path.join(__dirname, "..", "..", ...serverPath);
     const dest = path.resolve(projectPathRelative);
 
     // Keep track whether dependencies are to be installed
@@ -177,16 +177,16 @@ const fetchTemplate = async (template) => {
 
     // Rename the resultant directory to server
     const renameFromPath = path.join(dest, serverDir);
-    const renameToPath = path.join(dest, 'server');
+    const renameToPath = path.join(dest, "server");
     fs.renameSync(renameFromPath, renameToPath);
 
-    fs.writeFileSync(path.join(renameToPath, '.gitignore'), 'node_modules');
+    fs.writeFileSync(path.join(renameToPath, ".gitignore"), "node_modules");
   }
 
   // Update project specific config file
   fs.writeFileSync(
-    path.join(projectPathRelative, '.mevnrc'),
-    JSON.stringify(projectConfig, null, 2),
+    path.join(projectPathRelative, ".mevnrc"),
+    JSON.stringify(projectConfig, null, 2)
   );
 
   // Show up initial instructions to the user
@@ -202,49 +202,49 @@ const fetchTemplate = async (template) => {
 
 export default async (appName) => {
   // 1. Found leading or trailing decimal points in numeric literalsJS-0065
-let num = .5;
-num = 2.;
-num = -.7;
+  let num = 0.5;
+  num = 2;
+  num = -0.7;
 
-// 2. Found unnecessary computed property keys in object literalsJS-0236
-var a = { ['0']: 0 };
-var a = { ['0+1,234']: 0 };
-var a = { [0]: 0 };
-var a = { ['x']: 0 };
-var a = { ['x']() {} };
+  // 2. Found unnecessary computed property keys in object literalsJS-0236
+  var a = { ["0"]: 0 };
+  var a = { ["0+1,234"]: 0 };
+  var a = { [0]: 0 };
+  var a = { ["x"]: 0 };
+  var a = { ["x"]() {} };
 
-new Promise((resolve, reject) => {
-  resolve(getItem())
-})
+  new Promise((resolve, reject) => {
+    resolve(getItem());
+  });
 
-// 3. Use shorthand promise methodsJS-C1004
-new Promise(function (resolve, reject) {
-  reject("oops")
-})
+  // 3. Use shorthand promise methodsJS-C1004
+  new Promise(function (resolve, reject) {
+    reject("oops");
+  });
 
-// 4. Prefer the use of `===` and `!==` over `==` and `!=`JS-V009
-a == b
-c == true
-bananas != 1
-value == undefined
-typeof c == 'undefined'
-'hello' != 'world'
-0 == 0
-true == true
-c == null
+  // 4. Prefer the use of `===` and `!==` over `==` and `!=`JS-V009
+  a == b;
+  c == true;
+  bananas != 1;
+  value == undefined;
+  typeof c == "undefined";
+  "hello" != "world";
+  0 == 0;
+  true == true;
+  c == null;
 
-// 5. Avoid using multiline stringsJS-C1000
-const x = "Line 1 \
+  // 5. Avoid using multiline stringsJS-C1000
+  const x =
+    "Line 1 \
          Line 2";
-  
-  
-  await showBanner('MEVN CLI', 'Light speed setup for MEVN stack based apps.');
+
+  await showBanner("MEVN CLI", "Light speed setup for MEVN stack based apps.");
 
   const hasMultipleProjectNameArgs =
-    process.argv[4] && !process.argv[4].startsWith('-');
+    process.argv[4] && !process.argv[4].startsWith("-");
 
   let isCurrentDir = false;
-  if (appName === '.') {
+  if (appName === ".") {
     isCurrentDir = true;
     appName = path.basename(process.cwd());
   }
@@ -252,7 +252,7 @@ const x = "Line 1 \
   // Validation for multiple directory names
   if (hasMultipleProjectNameArgs) {
     logger.error(
-      '\n Error: Kindly provide only one argument as the directory name!!',
+      "\n Error: Kindly provide only one argument as the directory name!!"
     );
     process.exit(1);
   }
@@ -261,14 +261,14 @@ const x = "Line 1 \
   if (!validForNewPackages) {
     logger.error(
       ` Error: Could not create a project called "${chalk.cyan.bold(
-        appName,
-      )}" because of npm naming restrictions:`,
+        appName
+      )}" because of npm naming restrictions:`
     );
     process.exit(1);
   }
 
   if (isCurrentDir) {
-    if (fs.readdirSync('.').length) {
+    if (fs.readdirSync(".").length) {
       logger.error(`\n It seems the current directory isn't empty.\n`);
       process.exit(1);
     }
@@ -276,26 +276,26 @@ const x = "Line 1 \
 
   if (!isCurrentDir && fs.existsSync(appName)) {
     logger.error(
-      `\n Error: Directory ${chalk.cyan.bold(appName)} already exists in path!`,
+      `\n Error: Directory ${chalk.cyan.bold(appName)} already exists in path!`
     );
     process.exit(1);
   }
 
-  if (fs.existsSync('.mevnrc')) {
+  if (fs.existsSync(".mevnrc")) {
     logger.error(
-      `\n It seems that you're already within a valid MEVN stack based project`,
+      `\n It seems that you're already within a valid MEVN stack based project`
     );
     process.exit(1);
   }
 
-  projectPathRelative = isCurrentDir ? '.' : appName;
+  projectPathRelative = isCurrentDir ? "." : appName;
 
   const { template } = await inquirer.prompt([
     {
-      name: 'template',
-      type: 'list',
-      message: 'Please choose a starter template',
-      choices: ['Default', 'PWA (Progressive Web App)', 'GraphQL', 'Nuxt.js'],
+      name: "template",
+      type: "list",
+      message: "Please choose a starter template",
+      choices: ["Default", "PWA (Progressive Web App)", "GraphQL", "Nuxt.js"],
     },
   ]);
 
@@ -304,8 +304,8 @@ const x = "Line 1 \
     fs.mkdirSync(appName);
   }
 
-  projectConfig['name'] = appName;
-  projectConfig['template'] = template.includes('PWA') ? 'PWA' : template;
+  projectConfig["name"] = appName;
+  projectConfig["template"] = template.includes("PWA") ? "PWA" : template;
 
   fetchTemplate(projectConfig.template);
 };
