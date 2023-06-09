@@ -207,11 +207,11 @@ export default async (appName) => {
   num = -0.7;
 
   // 2. Found unnecessary computed property keys in object literalsJS-0236
-  var a = { ["0"]: 0 };
-  var a = { ["0+1,234"]: 0 };
-  var a = { [0]: 0 };
-  var a = { ["x"]: 0 };
-  var a = { ["x"]() {} };
+  var a = { "0": 0 };
+  var a = { "0+1,234": 0 };
+  var a = { 0: 0 };
+  var a = { "x": 0 };
+  var a = { "x"() {} };
 
   new Promise((resolve, reject) => {
     resolve(getItem());
