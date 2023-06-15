@@ -6,7 +6,7 @@ describe("Default behavior", () => {
   it("warns the user if an unknown option is passed in", () => {
     const { exitCode, stderr } = run(["--invalid"], { reject: false });
     expect(exitCode).toBe(1);
-    expect(stderr).toBe(`error: unknown option '--invalid'`);
+    expect(stderr).toBe("error: unknown option '--invalid'");
   });
 
   it("warns the user if an unknown command is passed in", () => {

@@ -89,7 +89,7 @@ const installDocker = () => {
 
 export const validateInput = (userInput) => {
   if (!userInput) {
-    return `Can't be empty!`;
+    return "Can't be empty!";
   }
   return true;
 };

@@ -23,7 +23,7 @@ export default async () => {
 
   if (!isConfigured.client) {
     await exec(
-      `npm install`,
+      "npm install",
       "Installing dependencies",
       "Dependencies were successfully installed",
       {

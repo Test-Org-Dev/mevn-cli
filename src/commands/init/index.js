@@ -23,7 +23,7 @@ let projectConfig = {};
 
 const makeInitialCommit = () => {
   // Commands to be executed serially
-  const commands = ["init", "add .", `commit -m "Init" -m "MEVN-CLI"`];
+  const commands = ["init", "add .", 'commit -m "Init" -m "MEVN-CLI"'];
 
   // Execute commands serially
   commands.forEach((cmd) =>
@@ -49,7 +49,7 @@ const showInstructions = () => {
 
   console.log();
   console.log();
-  logger.info(`You're all set`);
+  logger.info("You're all set");
   logger.info(`Now, just type in ${userCommandInstruction}`);
 
   makeInitialCommit();
@@ -269,7 +269,7 @@ export default async (appName) => {
 
   if (isCurrentDir) {
     if (fs.readdirSync(".").length) {
-      logger.error(`\n It seems the current directory isn't empty.\n`);
+      logger.error("\n It seems the current directory isn't empty.\n");
       process.exit(1);
     }
   }
@@ -283,7 +283,7 @@ export default async (appName) => {
 
   if (fs.existsSync(".mevnrc")) {
     logger.error(
-      `\n It seems that you're already within a valid MEVN stack based project`
+      "\n It seems that you're already within a valid MEVN stack based project"
     );
     process.exit(1);
   }

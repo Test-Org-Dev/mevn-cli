@@ -118,7 +118,7 @@ export default async () => {
   await exec(
     "npm install --save mongoose",
     "Installing mongoose ORM. Hold on",
-    `You're all set to interact with the DB`,
+    "You're all set to interact with the DB",
     {
       cwd: "server",
     }
