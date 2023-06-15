@@ -84,7 +84,7 @@ describe("mevn generate", () => {
 
     // Check whether a new entry is added to the route-config
     expect(
-      routerConfig.some((config) => config.trim() === `path:"/dashboard",`)
+      routerConfig.some((config) => config.trim() === 'path:"/dashboard",')
     );
   });
 
