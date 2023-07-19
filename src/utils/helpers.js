@@ -16,7 +16,7 @@ export const checkIfConfigFileExists = () => {
     console.error(
       chalk.cyan.bold(`\n\n Make sure that you're within a valid MEVN project
       \n${chalk.red.bold(" Error:")} No .mevnrc file found
-    `)
+    `),
     );
     process.exit(1);
   }
@@ -106,7 +106,7 @@ export const dirOfChoice = () => {
 
 const stripChar = (fileContent) =>
   fileContent.map((content) =>
-    content.includes("\r") ? content.substr(0, content.indexOf("\r")) : content
+    content.includes("\r") ? content.substr(0, content.indexOf("\r")) : content,
   );
 /**
  * Returns the file content as an arrray

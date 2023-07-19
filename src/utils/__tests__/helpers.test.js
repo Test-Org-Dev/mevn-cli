@@ -35,10 +35,10 @@ test("copyDirSync()", () => {
   // Assertions
   expect(fs.existsSync(path.join(destPath, "test-dir"))).toBeTruthy();
   expect(
-    fs.existsSync(path.join(destPath, "test-dir", "index.js"))
+    fs.existsSync(path.join(destPath, "test-dir", "index.js")),
   ).toBeTruthy();
   expect(
-    fs.readFileSync(path.join(destPath, "test-dir", "index.js"), "utf8")
+    fs.readFileSync(path.join(destPath, "test-dir", "index.js"), "utf8"),
   ).toBe("// Test");
 });
 
@@ -49,7 +49,7 @@ test("fetchProjectConfig()", async () => {
       ENTER, // Choose Default as the starter template
       ENTER, // Requires server directory
     ],
-    __dirname
+    __dirname,
   );
 
   const projectConfig = {

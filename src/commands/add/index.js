@@ -54,7 +54,7 @@ export default async (deps, { dev }) => {
       "Dependencies were successfully installed",
       {
         cwd: templateDir,
-      }
+      },
     );
   }
 
@@ -101,7 +101,7 @@ export default async (deps, { dev }) => {
 
     // Supported Nuxt.js modules
     const availableModules = nuxtModules.filter(
-      (module) => !availableBuildModules.includes(module)
+      (module) => !availableBuildModules.includes(module),
     );
 
     // Nuxt.js modules that are available for installation
@@ -125,7 +125,7 @@ export default async (deps, { dev }) => {
 
     // Nuxt.js modules that are supposed to be installed
     const modules = installCandidate.filter((dep) =>
-      availableModules.includes(dep)
+      availableModules.includes(dep),
     );
 
     // Add the respective prefix
@@ -137,7 +137,7 @@ export default async (deps, { dev }) => {
             : module === "content"
             ? `@nuxt/${module}`
             : `@nuxtjs/${module}`
-        }` // @nuxt/content has different prefix
+        }`, // @nuxt/content has different prefix
     );
 
     // If the user opted for atleast a Nuxt.js module
@@ -148,20 +148,20 @@ export default async (deps, { dev }) => {
         "Successfully installed the opted Nuxt.js modules",
         {
           cwd: templateDir,
-        }
+        },
       );
     }
 
     // Nuxt.js modules to be installed as a devDependency
     const buildModules = installCandidate.filter((dep) =>
-      availableBuildModules.includes(dep)
+      availableBuildModules.includes(dep),
     );
 
     // If the user opted for atleast a Nuxt.js buildModule
     if (buildModules.length) {
       // Add @nuxtjs prefix
       const buildModulesWithPrefix = buildModules.map(
-        (buildModule) => `@nuxtjs/${buildModule}`
+        (buildModule) => `@nuxtjs/${buildModule}`,
       );
 
       // Install buildModules as a devDep
@@ -171,7 +171,7 @@ export default async (deps, { dev }) => {
         "Successfully installed the opted Nuxt.js buildModules",
         {
           cwd: templateDir,
-        }
+        },
       );
     }
 
@@ -224,7 +224,7 @@ export default async (deps, { dev }) => {
       nuxtConfig.splice(
         buildModulesIdx,
         0,
-        `${" ".repeat(4)}'@nuxtjs/vuetify',`
+        `${" ".repeat(4)}'@nuxtjs/vuetify',`,
       );
 
       // Add 1 so that the content gets inserted after the buildModules array
@@ -233,7 +233,7 @@ export default async (deps, { dev }) => {
 
       // Add @nuxtjs/vuetify config beneath the buildModules array
       vuetifyConfig.forEach((config, idx) =>
-        nuxtConfig.splice(buildModulesEndIdx + idx, 0, config)
+        nuxtConfig.splice(buildModulesEndIdx + idx, 0, config),
       );
     }
 
@@ -255,7 +255,7 @@ export default async (deps, { dev }) => {
 
       // Add @nuxtjs/axios config beneath the modules array
       axiosConfig.forEach((config, idx) =>
-        nuxtConfig.splice(modulesEndIdx + idx, 0, config)
+        nuxtConfig.splice(modulesEndIdx + idx, 0, config),
       );
     }
 
@@ -281,7 +281,7 @@ export default async (deps, { dev }) => {
 
       // Add @nuxt/content config beneath the modules array
       contentConfig.forEach((config, idx) =>
-        nuxtConfig.splice(modulesEndIdx + idx, 0, config)
+        nuxtConfig.splice(modulesEndIdx + idx, 0, config),
       );
     }
 
@@ -303,7 +303,7 @@ export default async (deps, { dev }) => {
 
       // Add @nuxtjs/apollo config beneath the modules array
       apolloConfig.forEach((config, idx) =>
-        nuxtConfig.splice(modulesEndIdx + idx, 0, config)
+        nuxtConfig.splice(modulesEndIdx + idx, 0, config),
       );
     }
 
@@ -315,10 +315,10 @@ export default async (deps, { dev }) => {
         `${" ".repeat(4)}secretKey: process.env.SECRET_KEY || 'SECRET_KEY',`,
         `${" ".repeat(4)}oauthHost: process.env.OAUTH_HOST || 'OAUTH_HOST',`,
         `${" ".repeat(
-          4
+          4,
         )}oauthClientID: process.env.OAUTH_CLIENT_ID || 'OAUTH_CLIENT_ID',`,
         `${" ".repeat(
-          4
+          4,
         )}oauthClientSecret: process.env.OAUTH_CLIENT_SECRET || 'OAUTH_CLIENT_SECRET',`,
         `${" ".repeat(4)}onLogout: (req, res) => {`,
         `${" ".repeat(6)}// do something after logging out`,
@@ -335,7 +335,7 @@ export default async (deps, { dev }) => {
 
       // Add nuxt-oauth config beneath the modules array
       oAuthConfig.forEach((config, idx) =>
-        nuxtConfig.splice(modulesEndIdx + idx, 0, config)
+        nuxtConfig.splice(modulesEndIdx + idx, 0, config),
       );
 
       // It requires Vuex Store to be activated
@@ -358,7 +358,7 @@ export default async (deps, { dev }) => {
 
       // Add @nuxtjs/toast config beneath the modules array
       toastConfig.forEach((config, idx) =>
-        nuxtConfig.splice(modulesEndIdx + idx, 0, config)
+        nuxtConfig.splice(modulesEndIdx + idx, 0, config),
       );
     }
 
@@ -367,7 +367,7 @@ export default async (deps, { dev }) => {
       nuxtConfig.splice(
         buildModulesIdx,
         0,
-        `${" ".repeat(4)}'@nuxtjs/tailwindcss',`
+        `${" ".repeat(4)}'@nuxtjs/tailwindcss',`,
       );
     }
 
@@ -391,7 +391,7 @@ export default async (deps, { dev }) => {
       const buildConfigIdx =
         nuxtConfig.findIndex((line) => line.includes("build:")) + 4;
       postCssConfig.forEach((config, idx) =>
-        nuxtConfig.splice(buildConfigIdx + idx, 0, config)
+        nuxtConfig.splice(buildConfigIdx + idx, 0, config),
       );
     }
 
@@ -408,7 +408,7 @@ export default async (deps, { dev }) => {
 
       // Add @nuxtjs/storybook config beneath the modules array
       storybookConfig.forEach((config, idx) =>
-        nuxtConfig.splice(modulesEndIdx + idx, 0, config)
+        nuxtConfig.splice(modulesEndIdx + idx, 0, config),
       );
 
       // Update .gitignore
@@ -456,7 +456,7 @@ export default async (deps, { dev }) => {
 
       // Add @nuxtjs/toast config beneath the modules array
       markdownitConfig.forEach((config, idx) =>
-        nuxtConfig.splice(modulesEndIdx + idx, 0, config)
+        nuxtConfig.splice(modulesEndIdx + idx, 0, config),
       );
     }
 
@@ -482,7 +482,7 @@ export default async (deps, { dev }) => {
         "Dependencies were successfully installed",
         {
           cwd: templateDir,
-        }
+        },
       );
 
       // Update .mevnrc
@@ -535,7 +535,7 @@ export default async (deps, { dev }) => {
 
       // Fetching the position where in which router is passed on to the Vue instance
       const routerIndex = config.indexOf(
-        config.find((line) => line.trim() === "router,")
+        config.find((line) => line.trim() === "router,"),
       );
 
       // Insert store just after router so that it gets passed on to the Vue instance
@@ -558,12 +558,12 @@ export default async (deps, { dev }) => {
 
       // Fetch the index after which the respective config should come up
       const preIndex = config.indexOf(
-        config.find((line) => line.includes("Vue.config.productionTip"))
+        config.find((line) => line.includes("Vue.config.productionTip")),
       );
 
       // Inserting the respective Vuetify config
       ["Vue.use(Vuetify);", ""].forEach((item, i) =>
-        config.splice(preIndex + i, 0, item)
+        config.splice(preIndex + i, 0, item),
       );
 
       // Write back the updated config

@@ -47,7 +47,7 @@ export default async () => {
   // Warns the user if the list is empty
   if (!availableComponents.length) {
     logger.info(
-      "\n Info: All of the available components are dynamically imported"
+      "\n Info: All of the available components are dynamically imported",
     );
     return;
   }
@@ -65,15 +65,15 @@ export default async () => {
   // Find index corresponding to the regular import statement
   const regularImportIndex = routesConfig.indexOf(
     routesConfig.find(
-      (item) => item === `import ${componentName} from ${componentImportPath}`
-    )
+      (item) => item === `import ${componentName} from ${componentImportPath}`,
+    ),
   );
 
   // Find the index corresponding to name: ${componentName}.vue (within route-config)
   const componentNameIndex = routesConfig.indexOf(
     routesConfig.find(
-      (item) => item.trim() === `name: "${componentName.toLowerCase()}",`
-    )
+      (item) => item.trim() === `name: "${componentName.toLowerCase()}",`,
+    ),
   );
 
   // Update the respective route-config to use dynamic import statement
@@ -95,6 +95,6 @@ export default async () => {
     ` From now on ${componentName} will be rendered asynchronously`,
     {
       cwd: "client",
-    }
+    },
   );
 };

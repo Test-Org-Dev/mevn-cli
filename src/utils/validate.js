@@ -121,9 +121,9 @@ export const validateInstallation = async (dependency) => {
     if (!shouldInstallDep) {
       console.warn(
         chalk.yellow.bold(` Warning:- ${chalk.cyan.bold(
-          `${dependency} is required to be installed`
+          `${dependency} is required to be installed`,
         )}
-        `)
+        `),
       );
       process.exit(1);
     }

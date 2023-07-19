@@ -28,7 +28,7 @@ export default async () => {
       "Dependencies were successfully installed",
       {
         cwd: "client",
-      }
+      },
     );
 
     // Update .mevnrc

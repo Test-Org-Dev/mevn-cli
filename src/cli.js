@@ -29,7 +29,7 @@ const suggestCommands = (cmd) => {
   const availableCommands = program.commands.map((c) => c._name);
 
   const suggestion = availableCommands.find(
-    (c) => leven(c, cmd) < c.length * 0.4
+    (c) => leven(c, cmd) < c.length * 0.4,
   );
   if (suggestion) {
     logger.error(` Did you mean ${chalk.yellow(suggestion)}?`);
@@ -52,7 +52,7 @@ program
 program
   .command("generate")
   .description(
-    "Generates client side component files and server side CRUD boilerplate template"
+    "Generates client side component files and server side CRUD boilerplate template",
   )
   .action(generate);
 

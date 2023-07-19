@@ -148,7 +148,7 @@ export default async (templateDir) => {
       if (!fs.existsSync(staticConfigPath)) {
         fs.writeFileSync(
           staticConfigPath,
-          JSON.stringify(staticConfig, null, 2)
+          JSON.stringify(staticConfig, null, 2),
         );
       }
 
@@ -163,7 +163,7 @@ export default async (templateDir) => {
       ];
 
       let pkgJson = JSON.parse(
-        fs.readFileSync(path.join("client", "package.json"), "utf8")
+        fs.readFileSync(path.join("client", "package.json"), "utf8"),
       );
       const buildCmd = "npm run build";
       const postInstallScript = `if test \"$NODE_ENV\" = \"production\" ; then ${buildCmd} ; fi `; // eslint-disable-line
@@ -186,7 +186,7 @@ export default async (templateDir) => {
 
         fs.writeFileSync(
           "./client/package.json",
-          JSON.stringify(pkgJson, null, 2)
+          JSON.stringify(pkgJson, null, 2),
         );
       }
     }

@@ -11,7 +11,7 @@ const userSchema = new Schema(
       required: [true, "age field is required"],
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = model("users", userSchema);

@@ -27,7 +27,7 @@ const makeInitialCommit = () => {
 
   // Execute commands serially
   commands.forEach((cmd) =>
-    execa.sync("git", cmd.split(" "), { cwd: projectPathRelative })
+    execa.sync("git", cmd.split(" "), { cwd: projectPathRelative }),
   );
 };
 
@@ -43,7 +43,7 @@ const showInstructions = () => {
 
   if (!isCurrentDir) {
     userCommandInstruction = `${chalk.green.bold(
-      `cd ${projectPathRelative}`
+      `cd ${projectPathRelative}`,
     )} && ${userCommandInstruction}`;
   }
 
@@ -74,7 +74,7 @@ const fetchTemplate = async (template) => {
     "..",
     "..",
     "templates",
-    "starter-templates"
+    "starter-templates",
   );
 
   // Copy the starter template to user's current working directory
@@ -88,7 +88,7 @@ const fetchTemplate = async (template) => {
   // Rename to .gitignore
   fs.renameSync(
     path.join(renameToPath, ".mevngitignore"),
-    path.join(renameToPath, ".gitignore")
+    path.join(renameToPath, ".gitignore"),
   );
 
   // Prompt the user whether he/she requires pwa support
@@ -96,7 +96,7 @@ const fetchTemplate = async (template) => {
     const configFilePath = path.join(
       projectPathRelative,
       "client",
-      "nuxt.config.js"
+      "nuxt.config.js",
     );
     const configFile = readFileContent(configFilePath);
 
@@ -128,7 +128,7 @@ const fetchTemplate = async (template) => {
 
     if (deployTarget === "Node.js hosting") {
       const targetIdx = configFile.findIndex((line) =>
-        line.includes("target:")
+        line.includes("target:"),
       );
       configFile[targetIdx] = `${" ".repeat(2)}target: 'server',`;
     }
@@ -186,7 +186,7 @@ const fetchTemplate = async (template) => {
   // Update project specific config file
   fs.writeFileSync(
     path.join(projectPathRelative, ".mevnrc"),
-    JSON.stringify(projectConfig, null, 2)
+    JSON.stringify(projectConfig, null, 2),
   );
 
   // Show up initial instructions to the user
@@ -252,7 +252,7 @@ export default async (appName) => {
   // Validation for multiple directory names
   if (hasMultipleProjectNameArgs) {
     logger.error(
-      "\n Error: Kindly provide only one argument as the directory name!!"
+      "\n Error: Kindly provide only one argument as the directory name!!",
     );
     process.exit(1);
   }
@@ -261,8 +261,8 @@ export default async (appName) => {
   if (!validForNewPackages) {
     logger.error(
       ` Error: Could not create a project called "${chalk.cyan.bold(
-        appName
-      )}" because of npm naming restrictions:`
+        appName,
+      )}" because of npm naming restrictions:`,
     );
     process.exit(1);
   }
@@ -276,14 +276,14 @@ export default async (appName) => {
 
   if (!isCurrentDir && fs.existsSync(appName)) {
     logger.error(
-      `\n Error: Directory ${chalk.cyan.bold(appName)} already exists in path!`
+      `\n Error: Directory ${chalk.cyan.bold(appName)} already exists in path!`,
     );
     process.exit(1);
   }
 
   if (fs.existsSync(".mevnrc")) {
     logger.error(
-      `\n It seems that you're already within a valid MEVN stack based project`
+      `\n It seems that you're already within a valid MEVN stack based project`,
     );
     process.exit(1);
   }
