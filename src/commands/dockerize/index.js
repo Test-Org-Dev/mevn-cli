@@ -27,7 +27,7 @@ const getFileContent = (configFile) => {
     "..",
     "templates",
     "docker",
-    configFile
+    configFile,
   );
   return readFileContent(dockerConfigTemplatePath);
 };
@@ -52,7 +52,7 @@ const makeDataDir = () => {
       return;
     }
     gitIgnoreContents += ["\n", "# MEVN_GENERATED:MONGO", "/tmp", "\n"].join(
-      "\n"
+      "\n",
     );
   }
   fs.writeFileSync(".gitignore", gitIgnoreContents);
@@ -82,7 +82,7 @@ export default async () => {
     if (template === "Nuxt.js") {
       // docker-compose.yml
       dockerComposeTemplate[4] = `${" ".repeat(
-        4
+        4,
       )}command: bash -c "npm install && npm run dev"`;
       dockerComposeTemplate[9] = `${" ".repeat(6)}- "3000:3000"`;
       dockerComposeTemplate.splice(10, 0, `${" ".repeat(4)}environment:`);
@@ -133,29 +133,29 @@ export default async () => {
           // Update docker-compose.yml file contents
           dockerComposeTemplate = [].concat(
             dockerComposeTemplate,
-            mongoDBConfig
+            mongoDBConfig,
           );
         }
         const startIdx = dockerComposeTemplate.findIndex(
-          (line) => line.trim() === "- ./server:/app"
+          (line) => line.trim() === "- ./server:/app",
         );
 
         dockerComposeTemplate.splice(
           startIdx + 1,
           0,
-          `${" ".repeat(4)}environment:`
+          `${" ".repeat(4)}environment:`,
         );
 
         dockerComposeTemplate.splice(
           startIdx + 2,
           0,
-          `${" ".repeat(6)}- DB_URL=mongodb://mongo:27017/userdb`
+          `${" ".repeat(6)}- DB_URL=mongodb://mongo:27017/userdb`,
         );
 
         // Write to docker-compose.yml
         fs.writeFileSync(
           "docker-compose.yml",
-          dockerComposeTemplate.join("\n")
+          dockerComposeTemplate.join("\n"),
         );
       }
     } else {
@@ -175,7 +175,7 @@ export default async () => {
         template === "Nuxt.js"
           ? dockerIgnoreContent + "\n.nuxt" // Add .nuxt to .dockerignore
           : dockerIgnoreContent
-      }`
+      }`,
     );
   }
 
@@ -184,7 +184,7 @@ export default async () => {
   if (!fs.existsSync("server")) {
     dockerComposeTemplate = dockerComposeTemplate.slice(
       0,
-      template === "Nuxt.js" ? 12 : 10
+      template === "Nuxt.js" ? 12 : 10,
     );
   }
 

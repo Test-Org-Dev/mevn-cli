@@ -29,7 +29,7 @@ describe("mevn init", () => {
 
     expect(exitCode).toBe(1);
     expect(stderr).toContain(
-      "Error: Kindly provide only one argument as the directory name!!"
+      "Error: Kindly provide only one argument as the directory name!!",
     );
   });
 
@@ -42,7 +42,7 @@ describe("mevn init", () => {
         `${DOWN}${ENTER}`, // Choose static as the deploy target
         `${ENTER}`, // Requires server directory
       ],
-      tempDirPath
+      tempDirPath,
     );
 
     expect(exitCode).toBe(0);
@@ -101,7 +101,7 @@ describe("mevn init", () => {
         `${DOWN}${DOWN}${ENTER}`, // Choose GraphQL as the starter template
         `${ENTER}`, // Requires server directory
       ],
-      tempDirPath
+      tempDirPath,
     );
 
     expect(exitCode).toBe(0);
@@ -127,7 +127,7 @@ describe("mevn init", () => {
         `${DOWN}${ENTER}`, // Choose PWA as the starter template
         `${ENTER}`, // Requires server directory
       ],
-      tempDirPath
+      tempDirPath,
     );
 
     expect(exitCode).toBe(0);
@@ -145,10 +145,10 @@ describe("mevn init", () => {
     // Assert for files specific to the starter template
     expect(fs.existsSync(path.join(clientPath, "public", "img"))).toBeTruthy();
     expect(
-      fs.existsSync(path.join(clientPath, "public", "manifest.json"))
+      fs.existsSync(path.join(clientPath, "public", "manifest.json")),
     ).toBeTruthy();
     expect(
-      fs.existsSync(path.join(clientPath, "src", "registerServiceWorker.js"))
+      fs.existsSync(path.join(clientPath, "src", "registerServiceWorker.js")),
     ).toBeTruthy();
 
     // Delete the generated directory
@@ -165,7 +165,7 @@ describe("mevn init", () => {
         ENTER, // Choose Default as the starter template
         ENTER, // Requires server directory
       ],
-      genPath
+      genPath,
     );
 
     expect(exitCode).toBe(0);

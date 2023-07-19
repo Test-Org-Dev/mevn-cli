@@ -103,7 +103,7 @@ export default async () => {
 
   fs.writeFileSync(
     path.join(componentPath, `${componentName}.vue`),
-    componentTemplate.join("\n")
+    componentTemplate.join("\n"),
   );
 
   console.log();
@@ -114,7 +114,7 @@ export default async () => {
       "npm install",
       progressMsg,
       "Successfully installed the dependencies",
-      { cwd: "client" }
+      { cwd: "client" },
     );
     progressMsg = "Cleaning up";
 
@@ -134,7 +134,7 @@ export default async () => {
       `Successfully created ${componentName}.vue file in ${componentPath}`,
       {
         cwd: "client",
-      }
+      },
     );
   }
 
@@ -142,7 +142,7 @@ export default async () => {
   const routesConfig = readFileContent(routesConfigPath);
 
   const postImportIndex = routesConfig.indexOf(
-    routesConfig.find((item) => item === "")
+    routesConfig.find((item) => item === ""),
   );
 
   // Add an import statement at the respective place
@@ -155,7 +155,7 @@ export default async () => {
 
   // Fetch the index corresponding to route-config array closing bracket
   const routesArrayEndsWithIndex = routesConfig.indexOf(
-    routesConfig.find((item) => item.trim() === "]")
+    routesConfig.find((item) => item.trim() === "]"),
   );
 
   // Append a comma (},) to the previous component route-config delimiter
@@ -172,7 +172,7 @@ export default async () => {
 
   // Append the route config for newly created component
   routeConfigToAppend.forEach((config, index) =>
-    routesConfig.splice(routesArrayEndsWithIndex + index, 0, config)
+    routesConfig.splice(routesArrayEndsWithIndex + index, 0, config),
   );
 
   // Write back the updated config
@@ -185,6 +185,6 @@ export default async () => {
     `Successfully created ${componentName}.vue file in ${componentPath}`,
     {
       cwd: "client",
-    }
+    },
   );
 };

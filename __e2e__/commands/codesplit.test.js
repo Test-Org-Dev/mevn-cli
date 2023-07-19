@@ -26,7 +26,7 @@ describe("mevn codesplit", () => {
         ENTER, // Choose basic template
         `Y${ENTER}`, // Requires server directory
       ],
-      tempDirPath
+      tempDirPath,
     );
 
     // Invoke generate command
@@ -37,14 +37,14 @@ describe("mevn codesplit", () => {
         `dashboard${ENTER}`, // Dashboard.vue (name)
         `${DOWN}${ENTER}`, // Choose Page component
       ],
-      genPath
+      genPath,
     );
 
     // Invoke codesplit command
     const { exitCode } = await runPromptWithAnswers(
       ["codesplit"],
       [`${DOWN}${ENTER}`],
-      genPath
+      genPath,
     );
     expect(exitCode).toBe(0);
 
@@ -55,8 +55,8 @@ describe("mevn codesplit", () => {
     expect(
       routerConfig.some(
         (config) =>
-          config.trim() === `component: () => import("./views/Dashboard.vue")`
-      )
+          config.trim() === `component: () => import("./views/Dashboard.vue")`,
+      ),
     ).toBeTruthy();
 
     // Delete generated directory
@@ -72,7 +72,7 @@ describe("mevn codesplit", () => {
         `${DOWN}${ENTER}`, // Choose static as the deploy target
         `Y${ENTER}`, // Requires server directory
       ],
-      tempDirPath
+      tempDirPath,
     );
 
     // Invoke codesplit command

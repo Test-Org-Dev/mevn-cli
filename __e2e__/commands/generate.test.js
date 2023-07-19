@@ -32,7 +32,7 @@ describe("mevn generate", () => {
         ENTER, // Choose Default as the starter template
         `Y${ENTER}`, // Requires server directory
       ],
-      tempDirPath
+      tempDirPath,
     );
 
     expect(fetchProjectConfig(genPath).isConfigured.client).toBe(false);
@@ -45,7 +45,7 @@ describe("mevn generate", () => {
         `navbar${ENTER}`, // Navbar.vue (name)
         ENTER, // Choose UI component
       ],
-      genPath
+      genPath,
     );
 
     expect(exitCode).toBe(0);
@@ -55,7 +55,7 @@ describe("mevn generate", () => {
 
     // Check whether Navbar.vue is created within the respective path
     expect(
-      fs.existsSync(path.join(uiComponentPath, "Navbar.vue"))
+      fs.existsSync(path.join(uiComponentPath, "Navbar.vue")),
     ).toBeTruthy();
   });
 
@@ -67,14 +67,14 @@ describe("mevn generate", () => {
         `dashboard${ENTER}`, // Dashboard.vue (name)
         `${DOWN}${ENTER}`, // Choose Page component
       ],
-      genPath
+      genPath,
     );
 
     expect(exitCode).toBe(0);
 
     // Check whether Dashboard.vue is created within the respective path
     expect(
-      fs.existsSync(path.join(pageComponentPath, "Dashboard.vue"))
+      fs.existsSync(path.join(pageComponentPath, "Dashboard.vue")),
     ).toBeTruthy();
 
     // router.js
@@ -84,7 +84,7 @@ describe("mevn generate", () => {
 
     // Check whether a new entry is added to the route-config
     expect(
-      routerConfig.some((config) => config.trim() === `path:"/dashboard",`)
+      routerConfig.some((config) => config.trim() === `path:"/dashboard",`),
     );
   });
 
@@ -95,7 +95,7 @@ describe("mevn generate", () => {
         `${DOWN}${ENTER}`, // Choose CRUD Boilerplate
         ENTER, // Default value for MongoDB URI
       ],
-      genPath
+      genPath,
     );
 
     expect(exitCode).toBe(0);

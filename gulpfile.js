@@ -7,7 +7,7 @@ gulp.task("clean", () => del("lib/**"));
 gulp.task("build", async () => {
   const { exitCode } = await execa.command(
     "babel src --out-dir lib --copy-files --include-dotfiles",
-    { stdio: "inherit" }
+    { stdio: "inherit" },
   );
   console.log(`The process exited with code ${exitCode}`);
 });

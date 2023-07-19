@@ -30,7 +30,7 @@ export default async (projectConfig, templateDir) => {
       "Dependencies were successfully installed",
       {
         cwd: templateDir,
-      }
+      },
     );
 
     // Update .mevnrc

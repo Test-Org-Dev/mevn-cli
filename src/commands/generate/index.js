@@ -77,7 +77,7 @@ export default async () => {
     const routesFilePath = path.join("server", "routes", "api.js");
     fs.writeFileSync(
       routesFilePath,
-      fs.readFileSync(path.join(templatePath, "routes", "index.js"))
+      fs.readFileSync(path.join(templatePath, "routes", "index.js")),
     );
 
     // Create controllers directory
@@ -107,7 +107,7 @@ export default async () => {
       "Dependencies were successfully installed",
       {
         cwd: "server",
-      }
+      },
     );
     // .mevnrc
     projectConfig.isConfigured.server = true;
@@ -121,7 +121,7 @@ export default async () => {
     `You're all set to interact with the DB`,
     {
       cwd: "server",
-    }
+    },
   );
 
   copyDirSync(path.join(templatePath, "helpers"), "server");
@@ -138,7 +138,7 @@ export default async () => {
     requiredIndex + 1,
     0,
     'require("./helpers/db/mongodb.js")();',
-    ""
+    "",
   );
 
   fs.writeFileSync(serverFilePath, serverFileContent.join("\n"));

@@ -31,7 +31,7 @@ describe("mevn add", () => {
         ENTER, // Choose server as the deploy target
         `Y${ENTER}`, // Requires server directory
       ],
-      tempDirPath
+      tempDirPath,
     );
 
     // Invoke the add command
@@ -41,7 +41,7 @@ describe("mevn add", () => {
         ENTER,
         `${DOWN}${SPACE}${DOWN}${DOWN}${DOWN}${DOWN}${SPACE}${DOWN}${DOWN}${DOWN}${DOWN}${SPACE}${ENTER}`,
       ], // Choose @nuxtjs/pwa, nuxt-oauth and @nuxtjs/storybook modules
-      genPath
+      genPath,
     );
 
     expect(exitCode).toBe(0);
@@ -54,16 +54,16 @@ describe("mevn add", () => {
 
     // .mevnrc
     const projectConfig = JSON.parse(
-      fs.readFileSync(path.join(genPath, ".mevnrc"))
+      fs.readFileSync(path.join(genPath, ".mevnrc")),
     );
     ["pwa", "oauth", "storybook", "vuex"].forEach((module) =>
-      expect(projectConfig.modules).toContain(module)
+      expect(projectConfig.modules).toContain(module),
     );
     expect(projectConfig.isConfigured["client"]).toBe(true);
 
     // package.json
     const pkgJson = JSON.parse(
-      fs.readFileSync(path.join(clientPath, "package.json"))
+      fs.readFileSync(path.join(clientPath, "package.json")),
     );
     expect(pkgJson.dependencies["nuxt-oauth"]).toBeTruthy();
     expect(pkgJson.devDependencies["@nuxtjs/pwa"]).toBeTruthy();
@@ -82,7 +82,7 @@ describe("mevn add", () => {
 
     // vuex-store is activated via nuxt-oauth
     expect(
-      fs.readFileSync(path.join(clientPath, "store", "index.js"))
+      fs.readFileSync(path.join(clientPath, "store", "index.js")),
     ).toBeTruthy();
   });
 
@@ -90,12 +90,12 @@ describe("mevn add", () => {
     const { exitCode } = await runPromptWithAnswers(
       ["add", "v-tooltip"],
       [ENTER],
-      genPath
+      genPath,
     );
     expect(exitCode).toBe(0);
     // package.json
     const pkgJson = JSON.parse(
-      fs.readFileSync(path.join(clientPath, "package.json"))
+      fs.readFileSync(path.join(clientPath, "package.json")),
     );
     expect(pkgJson.dependencies["v-tooltip"]).toBeTruthy();
   });
@@ -104,14 +104,14 @@ describe("mevn add", () => {
     const { exitCode } = await runPromptWithAnswers(
       ["add", "husky", "--dev"],
       [`${DOWN}${ENTER}`],
-      genPath
+      genPath,
     );
 
     expect(exitCode).toBe(0);
 
     // package.json
     const pkgJson = JSON.parse(
-      fs.readFileSync(path.join(serverPath, "package.json"))
+      fs.readFileSync(path.join(serverPath, "package.json")),
     );
     expect(pkgJson.devDependencies["husky"]).toBeTruthy();
   });
@@ -120,7 +120,7 @@ describe("mevn add", () => {
     const { exitCode, stderr } = await runPromptWithAnswers(
       ["add"],
       [`${DOWN}${ENTER}`], // opts for server directory
-      genPath
+      genPath,
     );
     expect(exitCode).toBe(1);
     expect(stderr).toContain("Please specify the dependencies to install");
@@ -136,14 +136,14 @@ describe("mevn add", () => {
         ENTER, // Choose Default as the starter template
         `Y${ENTER}`, // Requires server directory
       ],
-      tempDirPath
+      tempDirPath,
     );
 
     // Invoke the add command
     const { exitCode, stderr } = await runPromptWithAnswers(
       ["add"],
       [ENTER], // opts for client directory
-      genPath
+      genPath,
     );
     expect(exitCode).toBe(1);
     expect(stderr).toContain("Please specify the dependencies to install");
